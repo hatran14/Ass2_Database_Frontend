@@ -1,0 +1,26 @@
+.container {
+    width: 70%;
+    margin: auto;
+}
+
+.left-row {
+    text-align: left;
+    width: 40%;
+}
+
+.green-btn {
+    background-color: var(--green) !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: var(--green) !important;;
+    border-radius: 16px !important;
+    color: var(--black) !important;
+}
+
+.green-btn:hover {
+    background-color: var(--white) !important;
+    color: var(--black) !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: var(--darker-green) !important;
+}

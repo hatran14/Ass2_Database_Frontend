@@ -1,0 +1,60 @@
+.table {
+    background-color: #fff;
+    border-radius: 2rem;
+    margin-top: 1rem;
+    box-shadow: 3px 2px 20px -3px rgba(0, 0, 0, 0.113);
+    border: none;
+}
+
+.table th {
+    padding: 1.5rem 1rem 1.5rem 1rem !important;    
+    border: none;
+}
+
+.table th:first-child {
+    border-radius: 2rem 0 0 0;
+}
+
+.table th:last-child {
+    border-radius: 0 2rem 0 0;
+}
+
+.table thead {
+    background-color: var(--blue) !important;
+    text-align: center;
+    vertical-align: middle;
+    color: var(--white) !important;
+}
+
+.table td {
+    padding: 1.5rem 1rem 1.5rem 1rem !important; 
+    border: none;
+    // width: 200px;
+    color: var(--black) !important;
+}
+
+.table tbody {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table tbody tr:nth-of-type(2n+1) {
+    background-color: var(--light-darker-blue);
+}
+
+.table tbody tr:nth-of-type(2n) {
+    background-color: var(--light-blue);
+}
+    
+.table tbody tr:hover {
+    background-color: var(--gray);
+}
+
+.table tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 2rem;
+}
+.table tbody tr:last-child td:last-child {
+    border-radius: 0 0 2rem 0;
+}
+
+/* *******ROW******* */

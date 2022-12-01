@@ -1,0 +1,37 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css?family=Saira');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css');
+
+
+// Import font
+// @import url();
+
+// Color
+:root {
+    --blue: #004C84;
+    --light-blue: #F2F5FF;
+    --light-darker-blue: #DADEEA;
+    --red: #FF8E8E;
+    --darker-red: #840000;
+    --green: #CAFFDC;
+    --darker-green: #00561d;
+    --orange: #FFBF84;
+    --darker-orange: #7b3d02;
+    --white: #FFFFFF;
+    --black: #000000;
+    --gray: #D9D9D9;
+    --darker-gray: #8e8e8e;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Saira', sans-serif;
+}
+
+html {
+
+}
+
+body {
+    background-color: #FBF6F8;
+}
