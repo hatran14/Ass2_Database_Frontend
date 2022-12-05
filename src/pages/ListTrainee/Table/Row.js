@@ -49,12 +49,11 @@ function PopupResult(props) {
 
     const handleSelectYear = async(e) => {
         console.log(props.trainee.SSN, e.target.value)
-        await axios.get(`${getTraineeResultByYear}`,{
-            SSN: props.trainee.SSN, year: e.target.value,
-        }).then (res => {
+        await axios.get(`${getTraineeResultByYear}/${props.trainee.SSN}/${e.target.value}`)
+        .then (res => {
             setResult(res.data.result)
         })
-        console.log(result.Score, props.trainee.SSN);
+        console.log(result, props.trainee.SSN);
     }
 
 

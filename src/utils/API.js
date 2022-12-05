@@ -8,3 +8,4 @@ export const addNew = `${host}/trainee`;
 export const getAllYear = `${host}/season`;
 export const getAllYearBySSN = `${host}/season`;
 export const getTraineeResultByYear = `${host}/result`;
+export const getBestAchievementBySSN = `${host}/bestAchievement`;
