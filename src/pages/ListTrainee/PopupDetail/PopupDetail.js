@@ -25,7 +25,7 @@ function RenderInfo() {
     )
 }
 
-export default function RenderDetail() {
+export default function RenderDetail({detail}) {
     return (
         <>
             <Row>
@@ -33,7 +33,7 @@ export default function RenderDetail() {
                     <RenderImg/>
                 </Col>
                 <Col>
-                    <RenderInfo/>
+                    <RenderInfo detail={detail}/>
                 </Col>
             </Row>
         </>    

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Button, Row, Modal } from "react-bootstrap";
 import ButtonStyles from './button.module.scss';
-import PopupDetail from '../PopupDetail/PopupDetail'
+import PopupDetail from '../PopupDetail/PopupDetail';
+import moment from "moment/moment";
 
 function MyVerticallyCenteredModal(props) {
     return (
@@ -43,10 +44,10 @@ function RenderButton() {
                 <i class="fa-solid fa-seedling me-2"></i>
                 Kết quả
             </Button>
-            <Button className={ButtonStyles['red-btn']}>
+            {/* <Button className={ButtonStyles['red-btn']}>
                 <i class="fa-solid fa-trash me-2"></i>
                 Xóa
-            </Button>
+            </Button> */}
             <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
@@ -55,10 +56,15 @@ function RenderButton() {
     )
 }
 
-export default function RenderRow() {
+export default function RenderRow(trainee) {
+    const formatDate = (str) => {
+        const day = new Date(str)
+        return moment(day).format('L');
+    }
+
     return (
         <>
-            <tr>
+            {/* <tr>
                 <td>Ahn Yu Jin</td>
                 <td>01/09/2003</td>
                 <td>Starship Entertainment</td>
@@ -73,6 +79,16 @@ export default function RenderRow() {
                 <td>
                     <RenderButton/>
                 </td>   
+            </tr> */console.log(trainee)}
+            <tr key={trainee.SSN}>
+                <td> {trainee.fullname} </td>
+                <td> 
+                    {formatDate(trainee.DoB)}  
+                </td>
+                <td> {trainee.Cname}</td>
+                <td>
+                    <RenderButton/>
+                </td>      
             </tr>
         </>
     )

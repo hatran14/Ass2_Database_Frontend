@@ -2,7 +2,7 @@ import { Table } from "react-bootstrap";
 import TableStyles from './table.module.scss'
 import Rows from './Row'
 
-export default function RenderTable() {
+export default function RenderTable({trainees}) {
     return (
         <Table className={TableStyles.table}>
             <thead>
@@ -14,7 +14,8 @@ export default function RenderTable() {
                 </tr>
             </thead>
             <tbody>
-                <Rows/>
+                {console.log(trainees)}
+                {trainees.map(Rows)}
             </tbody>
         </Table>
     )

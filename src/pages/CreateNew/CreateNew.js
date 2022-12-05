@@ -92,7 +92,7 @@ function RenderInputField() {
                 </Col>
                 <Col className="mx-auto">
                     <div className='text-center'>
-                        <img src={Images.URL} width='150px' className={clsx('mb-3', 'text-center')}></img>
+                        <img src='https://tiemanhsky.com/wp-content/uploads/2020/03/61103071_2361422507447925_6222318223514140672_n_1.jpg' width='240px' className={clsx('mb-3', 'text-center')}></img>
                         <br/>
                         <Button className={clsx(Styles['green-btn'], 'text-center')} onClick = {() => setModalShow(true)}>
                             <i class="fa-solid fa-image me-2"></i>
