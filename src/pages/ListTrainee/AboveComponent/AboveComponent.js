@@ -3,8 +3,10 @@ import SearchStyle from './search.module.scss'
 import { DropdownButton, Dropdown } from 'react-bootstrap'
 import { useState } from 'react'
 import { Row, Col} from 'react-bootstrap'
+import axios from "axios";
 import clsx from 'clsx'
 import { Link } from 'react-router-dom'
+import {getAllTraineeAYear} from '../../../utils/API'
 
 
 function SearchBar() {
@@ -21,12 +23,18 @@ function SearchBar() {
 }
 
 function RenderButton() {
+    const [trainees, setTrainees] = useState([])
     
-    const [value, changeValue] = useState('Chọn mùa')
-
-    function handleChangeValue(text) {
-        changeValue(text)
+    const handleSelectYear = async (e) => {
+        const year = e.target.value;
+        await axios.get(`${getAllTraineeAYear}/${year}`).then(res => {
+            const trainees = res.data;
+            console.log(trainees.result)
+            setTrainees(trainees.result);
+          })
     }
+
+
 
     return (
         <>
@@ -43,10 +51,10 @@ function RenderButton() {
             <Row>
                 <Col className='col-lg-5'>
                     <InputGroup>
-                        <Form.Select defaultValue="Chọn mùa">
+                        <Form.Select defaultValue="Chọn mùa" onChange={(e)=> handleSelectYear(e)}>
                             <option>Chọn mùa...</option>
-                            <option>2019</option>
-                            <option>2020</option>
+                            <option value={2020}>2020</option>
+                            <option value={2021}>2021</option>
                         </Form.Select>
                         <Form.Select defaultValue="Chọn tập">
                             <option>Chọn tập...</option>
