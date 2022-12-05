@@ -1,31 +1,32 @@
 import { Button, Form, InputGroup } from 'react-bootstrap'
 import SearchStyle from './search.module.scss'
 import { DropdownButton, Dropdown } from 'react-bootstrap'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Row, Col} from 'react-bootstrap'
 import axios from "axios";
 import clsx from 'clsx'
 import { Link } from 'react-router-dom'
-import {getAllTraineeAYear, getTraineeByFullname} from '../../../utils/API'
+import {getAllTraineeAYear, getTraineeByFullname, getAllYear} from '../../../utils/API'
 
 
 
-function SearchBar() {
-    // const [fullname, setFullname] = useState('');
+function SearchBar({setTrainees}) {
+    const [fullname, setFullname] = useState('');
 
-    // const handleClick = async() => {
-    //     await axios.get(`${getTraineeByFullname}/${fullname}`).then(res => {
-    //         const trainees = res.data;
-    //         console.log(trainees.result)
-    //         setTrainees(trainees.result);
-    //       })
-    // }
+    const handleClick = async() => {
+        await axios.get(`${getTraineeByFullname}/${fullname}`).then(res => {
+            const trainees = res.data;
+            // console.log(trainees.result)
+            trainees.result == null ? setTrainees([]) : setTrainees(trainees.result);
+          })
+
+    }
 
     return (
         <div className={`${SearchStyle['search-container']}`}>
             <div class="input-group">
-                <input type="search" class="form-control" placeholder="Tìm kiếm theo tên" aria-label="Search" aria-describedby="search-addon" />
-                <Button className={SearchStyle['gray-btn']} >
+                <input type="search" class="form-control" placeholder="Tìm kiếm theo tên" aria-label="Search" aria-describedby="search-addon" onChange={(e)=>{setFullname(e.target.value)}}/>
+                <Button className={SearchStyle['gray-btn']} onClick={handleClick} >
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </Button>
             </div>
@@ -34,6 +35,7 @@ function SearchBar() {
 }
 
 function RenderButton({setYear, setTrainees}) {
+    const [years, setYears] = useState([])
 
     const handleSelectYear = async (e) => {
         const year = e.target.value;
@@ -45,6 +47,15 @@ function RenderButton({setYear, setTrainees}) {
           })
     }
 
+    useEffect(() => {
+        (
+            async() => {
+                await axios.get(`${getAllYear}`).then (res => {
+                    setYears(res.data.result)
+                })
+            }
+        )();
+    }, [])
 
 
     return (
@@ -64,8 +75,11 @@ function RenderButton({setYear, setTrainees}) {
                     <InputGroup>
                         <Form.Select defaultValue="Chọn mùa" onChange={(e)=>handleSelectYear(e)}>
                             <option>Chọn mùa...</option>
-                            <option value={2020} >2020</option>
-                            <option value={2021} >2021</option>
+                            {/* <option value={2020} >2020</option>
+                            <option value={2021} >2021</option> */}
+                            {years.map((e, index) => 
+                                <option key={index} value={e.year}>{e.year}</option>
+                            )}
                         </Form.Select>
                     </InputGroup>
                 </Col>

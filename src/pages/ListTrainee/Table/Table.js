@@ -7,14 +7,13 @@ export default function RenderTable({trainees}) {
         <Table className={TableStyles.table}>
             <thead>
                 <tr>
+                    <th>Mã số CCCD</th>
                     <th>Họ và tên</th>
-                    <th>Ngày sinh</th>
-                    <th>Công ty</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                {console.log(trainees)}
+                {/* {console.log(trainees)} */}
                 {trainees.map(Rows)}
             </tbody>
         </Table>
