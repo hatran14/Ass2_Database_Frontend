@@ -51,6 +51,7 @@ function ModalImageUrl(props) {
 function RenderInputField() {
     const [modalShow, setModalShow] = useState(false);
     const [company, setCompany] = useState([]);
+    const [validated, setValidated] = useState(false);
     const [formInput, setFormInput] = useState({
         fname: '',
         lname: '',
@@ -107,9 +108,20 @@ function RenderInputField() {
 
     // console.log(formInput)
 
+
     const handleOnclickCreate = async() => {
         await axios.post(`${addNew}`,formInput);
-        console.log(formInput.dob);
+        alert(formInput.dob + "đã lưu");
+    }
+
+    const handleSubmit = (e) => {
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        setValidated(true);
     }
 
     useEffect(() => {
@@ -125,54 +137,63 @@ function RenderInputField() {
         <>
             <Row>
                 <Col className="col-lg-8">
-                    <Form>
+                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formGroupFName">
                                 <Form.Label for="lname">Họ và tên đệm</Form.Label>
-                                <Form.Control type="text" id="lname" placeholder="Nhập họ và tên đệm" onChange={(e)=>{handleChangeLname(e)}}/>
+                                <Form.Control required type="text" id="lname" placeholder="Nhập họ và tên đệm" onChange={(e)=>{handleChangeLname(e)}}/>
+                                <Form.Control.Feedback type="invalid">Họ và tên đệm là bắt buộc</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGroupLName">
                                 <Form.Label  for="fname">Tên</Form.Label>
-                                <Form.Control type="text" id="fname" placeholder="Nhập tên" onChange={(e)=>{handleChangeFname(e)}}/>
+                                <Form.Control required type="text" id="fname" placeholder="Nhập tên" onChange={(e)=>{handleChangeFname(e)}}/>
+                                <Form.Control.Feedback type="invalid">Tên là bắt buộc</Form.Control.Feedback>
                             </Form.Group>
                         </Row>
 
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formGroupDOB">
                                 <Form.Label for='date'>Ngày sinh</Form.Label>
-                                <Form.Control type="date" placeholder="Nhập ngày sinh" onChange={(e)=>{handleChangeDOB(e)}}/>
+                                <Form.Control required type="date" placeholder="Nhập ngày sinh" onChange={(e)=>{handleChangeDOB(e)}}/>
+                                <Form.Control.Feedback type="invalid">Ngày sinh là bắt buộc</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGroupCCCD">
                                 <Form.Label for='id'>Mã số CCCD</Form.Label>
-                                <Form.Control type="text" placeholder="Nhập số CCCD" onChange={(e)=>{handleChangeSSN(e)}}/>
+                                <Form.Control required type="text" placeholder="Nhập số CCCD" onChange={(e)=>{handleChangeSSN(e)}}/>
+                                <Form.Control.Feedback type="invalid">Mã số CCCD là bắt buộc</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGroupTel">
                                 <Form.Label for='tel'>Số điện thoại</Form.Label>
-                                <Form.Control type="tel"placeholder="Nhập số điện thoại" onChange={(e)=>{handleChangePhone(e)}}/>
+                                <Form.Control pattern="abc" required type="tel"placeholder="Nhập số điện thoại" onChange={(e)=>{handleChangePhone(e)}}/>
+                                <Form.Control.Feedback type='invalid'>Số điện thoại là bắt buộc</Form.Control.Feedback>
                             </Form.Group>
                         </Row>
 
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formGroupCompanyName">
                                 <Form.Label>Tên công ty</Form.Label>
-                                <Form.Select defaultValue="Chọn công ty" onChange={(e)=>{handleChangeCnumber(e)}}>
-                                    <option hidden>Chọn công ty...</option>
+                                <Form.Control required as="select" type="select" defaultValue="Chọn công ty" onChange={(e)=>{handleChangeCnumber(e)}}>
+                                    <option hidden value=''>Chọn công ty...</option>
                                     {company.map((e, index) => 
                                         <option key={index} value={e.cnumber}>{e.Name}</option>
                                     )}
-                                </Form.Select>
+                                </Form.Control>
+                                <Form.Control.Feedback type="invalid">Tên công ty là bắt buộc</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGroupCompanyID">
                                 <Form.Label>Mã số công ty</Form.Label>
-                                <Form.Control type="text"placeholder="Nhập mã số công ty" value={formInput.cnumber} required/>
+                                <Form.Control required type="text"placeholder="Nhập mã số công ty" value={formInput.cnumber}/>
+                                <Form.Control.Feedback type="invalid">Mã số công ty là bắt buộc</Form.Control.Feedback>
                             </Form.Group>
                         </Row>
                         <Row>
                             <Form.Group as={Col} controlId="formGroupAddress">
                                 <Form.Label>Địa chỉ hiện nay</Form.Label>
-                                <Form.Control type="text"placeholder="Nhập địa chỉ" onChange={(e)=>{handleChangeAddress(e)}} required/>
+                                <Form.Control required type="text"placeholder="Nhập địa chỉ" onChange={(e)=>{handleChangeAddress(e)}}/>
+                                <Form.Control.Feedback type="invalid">Địa chỉ là bắt buộc</Form.Control.Feedback>
                             </Form.Group>
                         </Row>
+                        <Button type='submit' className={clsx(Styles['green-btn'], 'mt-5')} onClick={handleOnclickCreate}>Lưu thông tin</Button>    
                     </Form>
                 </Col>
                 <Col className="mx-auto">
@@ -186,7 +207,6 @@ function RenderInputField() {
                     </div>
                 </Col>
             </Row>
-            <Button className={clsx(Styles['green-btn'], 'mt-5')} onClick={handleOnclickCreate}>Lưu thông tin</Button>
 
             <ModalImageUrl setFormInput={setFormInput} show={modalShow} onHide={() => setModalShow(false)}/>
         </>
