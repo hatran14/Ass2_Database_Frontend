@@ -37,17 +37,22 @@ function RenderInfo({trainee}) {
             <p>Số CCCD: {trainee.SSN}</p>
             <p>Địa chỉ: {trainee.address}</p>
             <p>Số mùa tham gia: {trainee.number_of_seasons_participating}</p>
-            <p>Thành tích cao nhất:
-            <Table>
+            <div className='d-flex'>
+                <p>Thành tích cao nhất: </p>
+
+                <ul>
+                    {bestAchievement.map((e, index) =>
+                        <li className='d-block' key={index}>Mùa {e.YEAR} - Tập {e.Best_achievement}</li>
+                    )}
+                </ul>
+            </div>
+
+            {/* <Table>
                 <thead>
                     <th>Mùa</th>
                     <th>Tập</th>
                 </thead>
                 <tbody>
-                    {/* <tr>
-                        <td>abcbcbcb</td>
-                        <td>1234</td>
-                    </tr> */}
                     {bestAchievement.map((e, index) => 
                         // <option key={index} value={e.year}>{e.year}</option>
                         <tr key={index}>
@@ -56,8 +61,8 @@ function RenderInfo({trainee}) {
                         </tr>
                     )}
                 </tbody>
-            </Table>
-            </p>
+            </Table> */}
+
         </>
     )
 }

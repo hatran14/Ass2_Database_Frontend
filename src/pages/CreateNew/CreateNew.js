@@ -33,7 +33,7 @@ function ModalImageUrl(props) {
     return (
         <>
             <Modal {...props} centered size="lg">
-                <Modal.Header className="fw-bold">Nhập URL hình ảnh</Modal.Header>
+                <Modal.Header className="fw-bold" closeButton>Nhập URL hình ảnh</Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Control type="text" placeholder="Nhập URL hình ảnh" ref={inputRef} onChange={(e)=>{handleChangePhoto(e)}}/>
@@ -139,15 +139,15 @@ function RenderInputField() {
 
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formGroupDOB">
-                                <Form.Label>Ngày sinh</Form.Label>
+                                <Form.Label for='date'>Ngày sinh</Form.Label>
                                 <Form.Control type="date" placeholder="Nhập ngày sinh" onChange={(e)=>{handleChangeDOB(e)}}/>
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGroupCCCD">
-                                <Form.Label>Mã số CCCD</Form.Label>
+                                <Form.Label for='id'>Mã số CCCD</Form.Label>
                                 <Form.Control type="text" placeholder="Nhập số CCCD" onChange={(e)=>{handleChangeSSN(e)}}/>
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGroupTel">
-                                <Form.Label>Số điện thoại</Form.Label>
+                                <Form.Label for='tel'>Số điện thoại</Form.Label>
                                 <Form.Control type="tel"placeholder="Nhập số điện thoại" onChange={(e)=>{handleChangePhone(e)}}/>
                             </Form.Group>
                         </Row>
@@ -156,7 +156,7 @@ function RenderInputField() {
                             <Form.Group as={Col} controlId="formGroupCompanyName">
                                 <Form.Label>Tên công ty</Form.Label>
                                 <Form.Select defaultValue="Chọn công ty" onChange={(e)=>{handleChangeCnumber(e)}}>
-                                    <option>Chọn công ty...</option>
+                                    <option hidden>Chọn công ty...</option>
                                     {company.map((e, index) => 
                                         <option key={index} value={e.cnumber}>{e.Name}</option>
                                     )}
@@ -164,13 +164,13 @@ function RenderInputField() {
                             </Form.Group>
                             <Form.Group as={Col} controlId="formGroupCompanyID">
                                 <Form.Label>Mã số công ty</Form.Label>
-                                <Form.Control type="text"placeholder="Nhập mã số công ty" value={formInput.cnumber}/>
+                                <Form.Control type="text"placeholder="Nhập mã số công ty" value={formInput.cnumber} required/>
                             </Form.Group>
                         </Row>
                         <Row>
                             <Form.Group as={Col} controlId="formGroupAddress">
                                 <Form.Label>Địa chỉ hiện nay</Form.Label>
-                                <Form.Control type="text"placeholder="Nhập địa chỉ" onChange={(e)=>{handleChangeAddress(e)}}/>
+                                <Form.Control type="text"placeholder="Nhập địa chỉ" onChange={(e)=>{handleChangeAddress(e)}} required/>
                             </Form.Group>
                         </Row>
                     </Form>
