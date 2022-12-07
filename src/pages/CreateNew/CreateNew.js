@@ -165,7 +165,10 @@ function RenderInputField() {
         <>
             <Row>
                 <Link to='/list-trainee'>
-                    <Button className={Styles['green-btn']}>Quay về danh sách</Button>
+                    <Button className={Styles['green-btn']}>
+                        <i class="fa-solid fa-caret-left me-2"></i>
+                        Quay về danh sách
+                    </Button>
                 </Link>
             </Row>
             <Row className="mt-5">
@@ -286,7 +289,7 @@ function RenderInputField() {
                                     placeholder='Nhập URL hình ảnh'
                                     onChange={(e)=>{handleChangePhoto(e)}}    
                                 />
-                                <Button className={Styles['green-btn']} onClick={()=>{handleClickChangePhoto()}}>Enter</Button>
+                                <Button className={Styles['gray-btn']} onClick={()=>{handleClickChangePhoto()}}>Enter</Button>
                                 <Form.Control.Feedback type="invalid">{error.photo}</Form.Control.Feedback>
                             </InputGroup>
                         </Row>
@@ -295,7 +298,7 @@ function RenderInputField() {
                 </Col>
                 <Col className="mx-auto">
                     <div className='text-center'>
-                        <img src={formInput.photo} width='240px'></img>
+                        <img src={formInput.photo} width='256px'></img>
                     </div>
                 </Col>
             </Row>

@@ -58,3 +58,34 @@
 }
 
 /* *******ROW******* */
+
+.children-table {
+    background-color: #fff;
+    margin-top: 1rem;
+    border: none;
+}
+
+.children-table thead {
+    background-color: var(--blue) !important;
+    
+    text-align: center;
+    vertical-align: middle;
+    color: var(--white) !important;
+}
+
+.children-table th { 
+    padding: 10px 10px 10px 10px !important; 
+    border: none;
+}
+
+.children-table td {
+    padding: 10px 10px 10px 10px !important; 
+    border: none;
+    // width: 200px;
+    color: var(--black) !important;
+}
+
+.children-table tbody {
+    text-align: center;
+    vertical-align: middle;
+}

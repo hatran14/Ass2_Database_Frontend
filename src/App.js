@@ -9,17 +9,30 @@ import CreateNew from './pages/CreateNew/index'
 import Login from './pages/Login/index';
 import Signup from './pages/Signup/index';
 
+import { AppContext, AppContextProvider } from './store/appContext';
+import { useContext } from 'react';
+
 function App() {
+  const context = useContext(AppContext);
+
   return (
     <div>
       <Layout>
         <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/about" element={<About/>}/>
+          <Route path='/login' element={<Login/>}/>
           <Route path="/list-trainee" element={<ListTrainee/>}/>
           <Route path='/create-new' element={<CreateNew/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/signup' element={<Signup/>}/>
+          {console.log('abs')}
+          {context.role === '0' && (
+            <Route path='/login' element={<Login/>}/>
+          )}
+
+          {context.role === '1' && (
+            <>
+              <Route path="/list-trainee" element={<ListTrainee/>}/>
+              <Route path='/create-new' element={<CreateNew/>}/>
+            </>
+          )}
         </Routes>
       </Layout>
     </div>

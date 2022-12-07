@@ -1,13 +1,14 @@
-import Header from "./Header";
+import Header from "./Header/Header";
 import { Fragment } from "react";
-import Footer from "./Footer";
+import Styles from './body.module.scss'
 
 function DefaultLayout(props) {
     return (
         <Fragment>
             <Header />
-                {props.children}
-            <Footer/>
+                <div className={Styles.wrapper}>
+                    {props.children}
+                </div>
         </Fragment>
     );
 }
