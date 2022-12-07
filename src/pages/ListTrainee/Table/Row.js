@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button, Row, Modal, InputGroup, Form, Table } from "react-bootstrap";
 import ButtonStyles from './button.module.scss';
+import TableStyles from './table.module.scss'
 import PopupDetail from '../PopupDetail/PopupDetail';
 import moment from "moment/moment";
 import { getAllYearBySSN, getTraineeResultByYear } from "../../../utils/API";
@@ -22,12 +23,12 @@ function MyVerticallyCenteredModal(props) {
         <Modal.Body>
           <PopupDetail trainee={props.trainee}/>
         </Modal.Body>
-        <Modal.Footer>
+        {/* <Modal.Footer>
             <Button className={ButtonStyles['green-btn']}>
                 <i class="fa-solid fa-pen-to-square me-2"></i>
                 Chỉnh sửa
             </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
         {/* {console.log(trainee.phone)} */}
       </Modal>
     );
@@ -59,13 +60,13 @@ function PopupResult(props) {
 
     return (
         <Modal {...props}
-        size="sm"
+        size="500px"
         aria-labelledby="contained-modal-title-vcenter"
         centered>
             <Modal.Header closeButton>
                 <Modal.Title>Kết quả</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className="m-3">
                 <InputGroup>
                     <Form.Select  defaultValue="Chọn mùa" onChange={(e)=>{handleSelectYear(e)}}>
                         <option>Chọn mùa...</option>
@@ -74,27 +75,27 @@ function PopupResult(props) {
                         )}
                     </Form.Select>
                 </InputGroup>
+                <Table className={TableStyles['children-table']}>
+                    <thead>
+                        <th>Tập</th>
+                        <th>Điểm</th>
+                    </thead>
+                    <tbody>
+                        {/* <tr>
+                            <td>abcbcbcb</td>
+                            <td>1234</td>
+                        </tr> */}
+                        {result.map((e, index) => 
+                            // <option key={index} value={e.year}>{e.year}</option>
+                            <tr key={index}>
+                                <td>{e.episode}</td>
+                                <td>{e.Score}</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </Table>
             </Modal.Body>
             {/* {console.log(props.trainee.SSN)} */}
-            <Table>
-                <thead>
-                    <th>Tập</th>
-                    <th>Điểm</th>
-                </thead>
-                <tbody>
-                    {/* <tr>
-                        <td>abcbcbcb</td>
-                        <td>1234</td>
-                    </tr> */}
-                    {result.map((e, index) => 
-                        // <option key={index} value={e.year}>{e.year}</option>
-                        <tr key={index}>
-                            <td>{e.episode}</td>
-                            <td>{e.Score}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </Table>
         </Modal>
     )
 }  
