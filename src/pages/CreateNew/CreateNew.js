@@ -132,13 +132,7 @@ function RenderInputField() {
 
     // console.log(formInput)
 
-
-    const handleOnclickCreate = async() => {
-        await axios.post(`${addNew}`,formInput);
-        
-    }
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
 
         const formErrors = validatedForm();
         if (Object.keys(formErrors).length > 0) {
@@ -147,8 +141,14 @@ function RenderInputField() {
             e.stopPropagation();
         }
         else {
-            handleOnclickCreate();
-            alert('Đã lưu thông tin');
+            const data = await axios.post(`${addNew}`,formInput); 
+            console.log(data.data)
+            if (data.data.error) {
+                alert(data.data.error)
+            }       
+            else {
+                alert('Đã lưu thông tin');
+            }
         }
     }
 

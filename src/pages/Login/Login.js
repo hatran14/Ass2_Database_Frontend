@@ -3,6 +3,7 @@ import LoginStyle from './login.module.scss'
 import axios from "axios";
 import { useState } from "react";
 import { login } from "../../utils/API";
+import { Link } from "react-router-dom";
 
 
 export default function RenderLogin() {
@@ -26,7 +27,9 @@ export default function RenderLogin() {
     const handleSubmit = async () => {
         console.log(formInput)
         const data = await axios.post(`${login}`,formInput);
-        if (data.data ==='Login success!') {}
+        if (data.data ==='Login success!') {
+            window.location.href = "../list-trainee";
+        }
         else alert(data.data)
 
         console.log(data);
@@ -46,7 +49,7 @@ export default function RenderLogin() {
                 </Form>
             </div>
             <div className="mt-3 mx-auto">
-                <Button onClick={handleSubmit}>Đăng nhập</Button>
+                    <Button onClick={handleSubmit}>Đăng nhập</Button>
             </div>
         </div>
 
